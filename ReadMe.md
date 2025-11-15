@@ -11,4 +11,11 @@ npm run dev              # API at http://localhost:5175
 cd frontend
 echo 'VITE_API_URL="http://localhost:5175/api"' > .env
 npm install
-npm run dev       
+npm run dev    
+
+# View Database (Prisma Studio)
+cd server
+npx prisma studio
+<!-- This opens a GUI at http://localhost:5555
+Click on "User" model to view all user data (email, experienceId, convaiId, rpmAvatarUrl, etc.)
+ -->
