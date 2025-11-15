@@ -1,0 +1,41 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  password     String
+  name         String?
+  experienceId String   @unique
+  convaiId     String?
+  rpmAvatarUrl String?
+  createdAt    DateTime @default(now())
+
+  // New fields for security questions
+  securityQuestion1   String
+  securityAnswer1Hash String
+  securityQuestion2   String
+  securityAnswer2Hash String
+
+  // 👇 Fix the relation
+  items Item[] @relation("UserItems")
+}
+
+model Item {
+  id        Int      @id @default(autoincrement())
+  name      String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ownerId   Int
+
+  // 👇 Match relation name
+  owner User @relation("UserItems", fields: [ownerId], references: [id])
+}
