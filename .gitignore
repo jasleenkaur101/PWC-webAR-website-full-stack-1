@@ -21,7 +21,7 @@ dist/
 
 # Prisma
 node_modules/.prisma/
-migrations/
+# migrations/
 
 # Database files - NEVER push these!
 *.db
