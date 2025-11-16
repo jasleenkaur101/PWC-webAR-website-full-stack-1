@@ -45,4 +45,12 @@ export default {
 
   // Experience / links
   generate8thWallUrl: () => http("POST", "/links/generate"),
+
+    // Experience / links
+  generate8thWallUrl: () => http("POST", "/links/generate"),
+
+  // Admin functions
+  getAllUsers: () => http("GET", "/user/admin/all"),
+  deleteUser: (userId) => http("DELETE", `/user/admin/${userId}`),
 };
+

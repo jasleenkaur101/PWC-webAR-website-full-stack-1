@@ -25,6 +25,7 @@ export default function NavBar() {
         <NavLink to="/avatars" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Avatars</NavLink>
         <NavLink to="/convai" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Convai</NavLink>
         <NavLink to="/portal" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>AI Business Card</NavLink>
+        <NavLink to="/admin" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Admin</NavLink>
 
         <div style={{ marginLeft: "auto", display:"flex", alignItems:"center", gap:12 }}>
           {me && (
