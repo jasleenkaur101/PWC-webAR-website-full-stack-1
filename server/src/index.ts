@@ -29,9 +29,6 @@ app.use(
 
 // ---- API routes ----
 app.use("/api", router);
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/experience", experienceRoutes);
 
 // ---- Error handler ALWAYS last before listen ----
 app.use(errorHandler);
