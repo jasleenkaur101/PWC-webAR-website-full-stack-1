@@ -202,55 +202,76 @@ You should see the login page. Click "Register" to create your first account.
 - GitHub repository with your code
 - Render account (free tier works)
 
-### Step 1: Push Code to GitHub
+### Step 1: Create PostgreSQL Database on Render
+
+**IMPORTANT:** You must create the database BEFORE creating the web service.
+
+1. Go to [render.com](https://render.com)
+2. Click "New +" → "PostgreSQL"
+3. Configure database:
+   - **Name:** `pwc-webar-database`
+   - **Database:** `pwcwebar` (auto-generated)
+   - **User:** `pwcwebar_user` (auto-generated)
+   - **Region:** Choose closest to you
+   - **Instance Type:** Free
+4. Click "Create Database"
+5. Wait for provisioning (~2 minutes)
+6. **Copy the "Internal Database URL"** - you'll need this for the web service
+
+### Step 2: Push Code to GitHub
 ```bash
 git add .
 git commit -m "Ready for deployment"
 git push origin main
 ```
 
-### Step 2: Create Web Service on Render
+### Step 3: Create Web Service on Render
 
-1. Go to [render.com](https://render.com)
+1. Still on [render.com](https://render.com)
 2. Click "New +" → "Web Service"
 3. Connect your GitHub repository
 4. Configure settings:
 
 **Basic Settings:**
 - **Name:** `pwc-webar-website-full-stack`
-- **Region:** Choose closest to you
+- **Region:** Same region as your database
 - **Branch:** `main`
 - **Root Directory:** Leave blank
 - **Runtime:** `Node`
 
 **Build & Deploy:**
 - **Build Command:**
-```
-  npm install --include=dev && npm run build && cd server && npx prisma generate && npx prisma migrate deploy
+```bash
+npm install --include=dev && npm run build && cd server && npx prisma generate && npx prisma migrate deploy
 ```
 - **Start Command:**
-```
-  npm run -w server dev
+```bash
+npm run -w server dev
 ```
 
 **Environment Variables:**
 Add these in the "Environment" tab:
-- `DATABASE_URL` = `file:./dev.db`
-- `JWT_SECRET` = `your-production-secret-key`
+- `DATABASE_URL` = **[Paste Internal Database URL from Step 1]**
+- `JWT_SECRET` = `your-production-secret-key-min-16-chars`
 - `NODE_ENV` = `production`
 
-### Step 3: Deploy
+### Step 4: Deploy
 
 Click "Create Web Service" and wait for deployment (5-10 minutes).
 
-Your app will be available at: `https://your-service-name.onrender.com`
+**Verify deployment:**
+1. Check logs for: `Migration applied successfully`
+2. Look for: `Your service is live 🎉`
+3. Your app will be available at: `https://pwc-webar-website-full-stack.onrender.com`
 
-### Step 4: Register Production Users
+### Step 5: Test Database Persistence
 
-Visit your production URL and register users directly on the live site.
+1. Visit your production URL and register a test user
+2. Go to Render dashboard → Click your service → Manual Deploy → "Clear build cache & deploy"
+3. After redeployment, try logging in with the same user
+4. ✅ If login works, your database is persistent!
 
 ---
-
 ## 8th Wall Integration
 
 ### Update Backend URL in 8th Wall Project
@@ -421,6 +442,27 @@ curl https://your-app.onrender.com/api/health
 # Get user by experience ID
 curl https://your-app.onrender.com/api/user/experience/123456
 ```
+
+---
+
+### Database & Deployment Issues
+
+**Issue: Database resets after deployment**
+- This means you're using SQLite (`file:./dev.db`) in production
+- Solution: Follow Step 1 in Production Deployment to create PostgreSQL database
+- Update `DATABASE_URL` environment variable to use PostgreSQL URL
+
+**Issue: QR code doesn't show on Business Card page**
+- Check browser console for CSP errors
+- Verify `helmet` configuration in `server/src/index.ts` includes:
+```typescript
+  "img-src": ["'self'", "data:", "https://api.qrserver.com"]
+```
+
+**Issue: "No migration found" during deployment**
+- Ensure `server/prisma/migrations/` folder exists in git
+- Check that migration files are committed
+- Verify `migration_lock.toml` has `provider = "postgresql"`
 
 ---
 
