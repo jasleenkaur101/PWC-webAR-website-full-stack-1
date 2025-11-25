@@ -7,12 +7,8 @@ export default function TargetImages() {
 
   // Hard-coded list of target images - modify this array to add/remove images
   const TARGET_IMAGES = [
-    { id: 1, imageUrl: "/target-images/image1.jpg" },
-    { id: 2, imageUrl: "/target-images/image2.jpg" },
-    { id: 3, imageUrl: "/target-images/image3.jpg" },
-    { id: 4, imageUrl: "/target-images/image4.jpg" },
-    { id: 5, imageUrl: "/target-images/image5.jpg" },
-    { id: 6, imageUrl: "/target-images/image6.jpg" }
+    { id: 1, imageUrl: "/target-images/tanami-target-image.jpg" },
+    { id: 2, imageUrl: "/target-images/target-QR-code.png" }
   ];
 
   function downloadImage(imageUrl, imageId) {
