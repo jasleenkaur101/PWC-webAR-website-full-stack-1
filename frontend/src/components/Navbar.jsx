@@ -27,18 +27,18 @@ export default function NavBar() {
         <NavLink to="/portal" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>AI Business Card</NavLink>
         <NavLink to="/admin" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Admin</NavLink>
 
-        <div style={{ marginLeft: "auto", display:"flex", alignItems:"center", gap:12 }}>
+        <div style={{ marginLeft: "auto", display:"flex", alignItems:"center", gap:12, flexWrap: "wrap" }}>
           {me && (
             <>
-              <div className="muted" style={{fontSize:14}}>
+              <div className="muted" style={{fontSize:14, whiteSpace: "nowrap"}}>
                 Welcome, <strong>{me.name || me.email}</strong>
               </div>
-              <div className="badge badge-primary">
-                <strong>Unique Code:</strong>&nbsp;{me.experienceId}
+              <div className="badge badge-primary" style={{ whiteSpace: "nowrap" }}>
+                <strong>Code:</strong>&nbsp;{me.experienceId}
               </div>
             </>
           )}
-          <button className="btn btn-ghost btn-pill" onClick={signOut}>Sign out</button>
+          <button className="btn btn-ghost btn-pill" onClick={signOut} style={{ whiteSpace: "nowrap" }}>Sign out</button>
         </div>
       </nav>
     </header>

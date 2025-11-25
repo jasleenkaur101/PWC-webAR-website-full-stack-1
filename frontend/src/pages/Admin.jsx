@@ -31,7 +31,7 @@ export default function Admin() {
     try {
       await API.deleteUser(userId);
       setMsg(`User ${email} deleted successfully`);
-      loadUsers(); // Reload list
+      loadUsers();
     } catch (err) {
       setMsg(`Failed to delete user: ${err.message}`);
     }
@@ -44,38 +44,42 @@ export default function Admin() {
       <Navbar />
       <main className="container">
         <div className="page">
-          <div className="content-area">
+          <div className="content-area" style={{ width: "100%", maxWidth: "100%" }}>
             <h2>User Management</h2>
             {msg && <div className="alert alert-info">{msg}</div>}
             
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 20 }}>
+            <div style={{ overflowX: 'auto', marginTop: 20, width: "100%" }}>
+              <table style={{ 
+                width: '100%', 
+                minWidth: '800px',
+                borderCollapse: 'collapse'
+              }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid var(--border)' }}>
-                    <th style={{ padding: 12, textAlign: 'left' }}>ID</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>Email</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>Name</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>Experience ID</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>ConvAI</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>Avatar</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>Created</th>
-                    <th style={{ padding: 12, textAlign: 'left' }}>Actions</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>ID</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>Email</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>Name</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>Experience ID</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>ConvAI</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>Avatar</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>Created</th>
+                    <th style={{ padding: 12, textAlign: 'left', whiteSpace: 'nowrap' }}>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((user) => (
                     <tr key={user.id} style={{ borderBottom: '1px solid var(--border)' }}>
                       <td style={{ padding: 12 }}>{user.id}</td>
-                      <td style={{ padding: 12 }}>{user.email}</td>
+                      <td style={{ padding: 12, whiteSpace: 'nowrap' }}>{user.email}</td>
                       <td style={{ padding: 12 }}>{user.name || '-'}</td>
                       <td style={{ padding: 12, fontWeight: 'bold' }}>{user.experienceId}</td>
-                      <td style={{ padding: 12 }}>{user.convaiId ? '✅' : '❌'}</td>
-                      <td style={{ padding: 12 }}>{user.rpmAvatarUrl ? '✅' : '❌'}</td>
-                      <td style={{ padding: 12 }}>{new Date(user.createdAt).toLocaleDateString()}</td>
+                      <td style={{ padding: 12, textAlign: 'center' }}>{user.convaiId ? 'Yes' : 'No'}</td>
+                      <td style={{ padding: 12, textAlign: 'center' }}>{user.rpmAvatarUrl ? 'Yes' : 'No'}</td>
+                      <td style={{ padding: 12, whiteSpace: 'nowrap' }}>{new Date(user.createdAt).toLocaleDateString()}</td>
                       <td style={{ padding: 12 }}>
                         <button
                           className="btn btn-secondary"
-                          style={{ padding: '6px 12px', fontSize: 12 }}
+                          style={{ padding: '6px 12px', fontSize: 12, whiteSpace: 'nowrap' }}
                           onClick={() => deleteUser(user.id, user.email)}
                         >
                           Delete

@@ -1025,3 +1025,232 @@ input:focus, textarea:focus{
 
 /* Optional: align this row consistently across pages */
 .section .action-row { margin-top: 16px; }
+
+/* Container adjustments for all screen sizes */
+.container {
+  padding: 20px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .page {
+    gap: 20px;
+    padding: 0 12px;
+  }
+}
+
+/* Navbar responsive fixes */
+@media (max-width: 1024px) {
+  .navbar nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .navbar nav > div {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  
+  .navbar nav .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  .navbar nav .muted {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar nav a {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+/* Portal layout responsive adjustments */
+@media (max-width: 1024px) {
+  .portal-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .options-container {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  
+  .option-card {
+    padding: 16px;
+  }
+  
+  .option-card-description {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .options-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Content area responsive */
+@media (max-width: 768px) {
+  .content-area {
+    padding: 16px;
+    min-height: 400px;
+  }
+  
+  .content-area-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .content-area-title {
+    font-size: 18px;
+  }
+  
+  .content-area-body {
+    gap: 16px;
+  }
+}
+
+/* Section responsive */
+.section {
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 16px;
+  }
+  
+  .section-head {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .icon-circle {
+    width: 38px;
+    height: 38px;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+}
+
+/* Button responsive */
+@media (max-width: 640px) {
+  .btn-primary, .btn-secondary, .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .action-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* Input containers */
+.input-container {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .portal-input {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* QR Container responsive */
+#qr-container {
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  #qr-container canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Avatar grid responsive */
+@media (max-width: 640px) {
+  .avatar-grid {
+    justify-content: center;
+  }
+  
+  .avatar-card {
+    width: 100px;
+  }
+}
+
+/* Chips responsive */
+@media (max-width: 640px) {
+  .chips {
+    justify-content: center;
+  }
+  
+  .chip {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+/* Public link box responsive */
+@media (max-width: 640px) {
+  .public-link-box {
+    font-size: 12px;
+    word-break: break-all;
+    white-space: normal;
+  }
+}
+
+/* Form responsive */
+@media (max-width: 640px) {
+  form {
+    padding: 20px 16px;
+  }
+  
+  .form-label {
+    font-size: 13px;
+  }
+}
+
+/* Alert responsive */
+.alert {
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .alert {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+/* Badge responsive in content */
+@media (max-width: 640px) {
+  .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
