@@ -6,6 +6,7 @@ import Home from "./pages/Home.jsx";
 import Avatars from "./pages/Avatars.jsx";
 import Convai from "./pages/Convai.jsx";
 import Portal from "./pages/Portal.jsx";
+import TargetImages from "./pages/TargetImages.jsx";
 import Admin from "./pages/Admin.jsx";
 
 
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/avatars" element={<Avatars />} />
       <Route path="/convai" element={<Convai />} />
       <Route path="/portal" element={<Portal />} />
+      <Route path="/target-images" element={<TargetImages />} />
       <Route path="/admin" element={<Admin />} />
 
       {/* Default */}

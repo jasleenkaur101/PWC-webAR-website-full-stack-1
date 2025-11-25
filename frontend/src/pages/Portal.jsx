@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
 import NavBar from "../components/Navbar.jsx";
 import API from "../api.js";
 import { EIGHTH_WALL_BASE_URL } from '../config.js';
@@ -19,12 +20,10 @@ export default function Portal() {
 
   const deepLink = useMemo(() => {
     if (!me?.experienceId) return "";
-    // Shared main experience with unique code:
     return `${EIGHTH_WALL_BASE_URL}/?userId=USER${me.experienceId}`;
   }, [me]);
 
   function generate() {
-    // in future, you might POST to backend to confirm readiness
     setUrl(deepLink);
     setJustGenerated(true);
     setTimeout(() => setJustGenerated(false), 1500);
@@ -35,9 +34,18 @@ export default function Portal() {
     navigator.clipboard.writeText(url).catch(()=>{});
   }
 
-  const qrSrc = url
-    ? `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=240x240`
-    : "";
+  function downloadQRCode() {
+    const canvas = document.getElementById("qr-code-canvas");
+    if (!canvas) return;
+    
+    const pngUrl = canvas.toDataURL("image/png");
+    const downloadLink = document.createElement("a");
+    downloadLink.href = pngUrl;
+    downloadLink.download = `qr-code-${me?.experienceId || 'business-card'}.png`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
 
   return (
     <>
@@ -46,11 +54,17 @@ export default function Portal() {
         <div className="page portal-layout">
           <div className="options-container">
             <div className="option-card" onClick={()=>window.history.back()}>
-              <div className="option-card-header"><div className="option-card-icon"></div><h3 className="option-card-title">Back</h3></div>
+              <div className="option-card-header">
+                <div className="option-card-icon"></div>
+                <h3 className="option-card-title">Back</h3>
+              </div>
               <p className="option-card-description">Return to previous step</p>
             </div>
             <div className="option-card selected">
-              <div className="option-card-header"><div className="option-card-icon"></div><h3 className="option-card-title">Step 3 — Business Card</h3></div>
+              <div className="option-card-header">
+                <div className="option-card-icon"></div>
+                <h3 className="option-card-title">Step 3 — Business Card</h3>
+              </div>
               <p className="option-card-description">Generate your 8th Wall URL & QR code</p>
             </div>
           </div>
@@ -87,14 +101,50 @@ export default function Portal() {
                   <div className="public-link-box" style={{maxWidth:780}}>
                     <strong>8th Wall URL:</strong> {url}
                   </div>
-                  <div style={{display:"flex", gap:12}}>
-                    <button className="btn btn-secondary" onClick={copyLink}>Copy Link</button>
-                    <a className="btn btn-outline" href={url} target="_blank" rel="noreferrer">Open</a>
+                  <div style={{display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center"}}>
+                    <button className="btn btn-secondary" onClick={copyLink}>
+                      Copy Link
+                    </button>
+                    <a className="btn btn-outline" href={url} target="_blank" rel="noreferrer">
+                      Open
+                    </a>
                   </div>
 
-                  <div id="qr-container">
-                    <img src={qrSrc} alt="QR Code" width="240" height="240" style={{borderRadius:12}}/>
-                    <div className="muted" style={{marginTop:8, fontSize:12}}>Scan to open your experience</div>
+                  <div id="qr-container" style={{ textAlign: "center", marginTop: 24 }}>
+                    <h4>Scan to Experience</h4>
+                    <div style={{ 
+                      display: "inline-block", 
+                      padding: "16px", 
+                      background: "#fff", 
+                      borderRadius: "12px", 
+                      marginTop: "12px" 
+                    }}>
+                      <QRCodeCanvas 
+                        id="qr-code-canvas"
+                        value={url} 
+                        size={240} 
+                        includeMargin 
+                      />
+                    </div>
+                    <div className="muted" style={{marginTop:12, fontSize:12}}>
+                      Scan to open your experience
+                    </div>
+
+                    <div style={{ 
+                      marginTop: "16px", 
+                      display: "flex", 
+                      gap: "12px", 
+                      justifyContent: "center", 
+                      flexWrap: "wrap" 
+                    }}>
+                      <button
+                        className="btn btn-secondary"
+                        onClick={downloadQRCode}
+                      >
+                        <i className="fa-solid fa-download" style={{ marginRight: "8px" }}></i>
+                        Download QR Code
+                      </button>
+                    </div>
                   </div>
                 </>
               )}
