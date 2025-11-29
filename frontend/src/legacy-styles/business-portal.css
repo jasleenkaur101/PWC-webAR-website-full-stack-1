@@ -1658,3 +1658,36 @@ input:focus, textarea:focus{
     display: none;
   }
 }
+
+/* ===========================
+   AUTH LOGO STYLES
+   =========================== */
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  align-self: center;
+}
+
+.auth-logo:hover {
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+
+.auth-logo-text {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.auth-logo-accent {
+  font-size: 28px;
+  font-weight: 800;
+  color: #FF69B4;
+}
