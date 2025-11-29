@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../api";
 
@@ -15,13 +15,22 @@ export default function NavBar() {
   function signOut() {
     localStorage.removeItem("token");
     sessionStorage.removeItem("token");
-    navigate("/login");
+    sessionStorage.removeItem("adminAuthenticated");
+    navigate("/");
   }
 
   return (
     <header className="navbar glass">
       <nav>
-        <NavLink to="/home" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Home</NavLink>
+        {/* Clickable Logo - links to landing page */}
+        <Link to="/" className="nav-logo" title="Back to Home">
+          <span className="nav-logo-text">PWC</span>
+          <span className="nav-logo-accent">WebAR</span>
+        </Link>
+
+        <div className="nav-divider"></div>
+
+        <NavLink to="/home" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Dashboard</NavLink>
         <NavLink to="/avatars" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Avatars</NavLink>
         <NavLink to="/convai" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>Convai</NavLink>
         <NavLink to="/portal" className={({isActive}) => `nav-link ${isActive ? "active" : ""}`}>AI Business Card</NavLink>
