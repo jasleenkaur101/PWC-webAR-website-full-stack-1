@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../legacy-styles/business-portal.css";
 
 export default function AdminAuthModal({ onAuthenticate }) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -39,6 +41,10 @@ export default function AdminAuthModal({ onAuthenticate }) {
     }, 500);
   }
 
+  function handleBack() {
+    navigate("/home");
+  }
+
   return (
     <div style={{
       position: "fixed",
@@ -60,9 +66,43 @@ export default function AdminAuthModal({ onAuthenticate }) {
         padding: "32px",
         maxWidth: "420px",
         width: "100%",
-        boxShadow: "0 20px 60px rgba(0, 0, 0, 0.5)"
+        boxShadow: "0 20px 60px rgba(0, 0, 0, 0.5)",
+        position: "relative"
       }}>
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
+        {/* Back Button */}
+        <button
+          type="button"
+          onClick={handleBack}
+          style={{
+            position: "absolute",
+            top: "16px",
+            left: "16px",
+            background: "rgba(255, 255, 255, 0.08)",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            borderRadius: "8px",
+            padding: "8px 14px",
+            color: "var(--muted)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            fontSize: "13px",
+            transition: "all 0.2s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.12)";
+            e.currentTarget.style.color = "var(--text)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+            e.currentTarget.style.color = "var(--muted)";
+          }}
+        >
+          <i className="fa-solid fa-arrow-left"></i>
+          <span>Back</span>
+        </button>
+
+        <div style={{ textAlign: "center", marginBottom: "24px", marginTop: "16px" }}>
           <div style={{
             width: "60px",
             height: "60px",

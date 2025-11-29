@@ -4,8 +4,14 @@ import "../legacy-styles/business-portal.css";
 export default function AuthShell({ title, subtitle, children }) {
   return (
     <div className="auth-shell">
+      {/* Top-left corner logo */}
+      <Link to="/" className="auth-page-logo" title="Back to Home">
+        <span className="auth-page-logo-text">PWC</span>
+        <span className="auth-page-logo-accent">WebAR</span>
+      </Link>
+
       <div className="auth-card glass">
-        {/* Clickable Logo */}
+        {/* Logo inside card */}
         <Link to="/" className="auth-logo" title="Back to Home">
           <span className="auth-logo-text">PWC</span>
           <span className="auth-logo-accent">WebAR</span>
