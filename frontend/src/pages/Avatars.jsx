@@ -53,25 +53,25 @@ function isValidGlb(u) {
       <NavBar />
       <main className="container">
         <div className="page portal-layout">
-          {/* Left: options / steps */}
+{/* Left: options / steps */}
           <div className="options-container">
             <div className="option-card selected">
               <div className="option-card-header">
-                <div className="option-card-icon"></div>
+                <div className="option-card-icon"><i className="fa-solid fa-person"></i></div>
                 <h3 className="option-card-title">Step 1 — Avatar (RPM)</h3>
               </div>
               <p className="option-card-description">Open RPM, export .glb, paste URL and save.</p>
             </div>
             <div className="option-card" onClick={()=>navigate("/convai")}>
               <div className="option-card-header">
-                <div className="option-card-icon"></div>
+                <div className="option-card-icon"><i className="fa-solid fa-brain"></i></div>
                 <h3 className="option-card-title">Step 2 — Convai</h3>
               </div>
               <p className="option-card-description">Enter your Convai Character ID.</p>
             </div>
             <div className="option-card" onClick={()=>navigate("/portal")}>
               <div className="option-card-header">
-                <div className="option-card-icon"></div>
+                <div className="option-card-icon"><i className="fa-solid fa-address-card"></i></div>
                 <h3 className="option-card-title">Step 3 — Business Card</h3>
               </div>
               <p className="option-card-description">Generate your 8th Wall link & QR.</p>
@@ -81,10 +81,9 @@ function isValidGlb(u) {
           {/* Right: content */}
           <div className="content-area">
             <div className="content-area-header">
-              <div className="icon-circle"></div>
+              <div className="icon-circle"><i className="fa-solid fa-person"></i></div>
               <h2 className="content-area-title">Create with Ready Player Me</h2>
             </div>
-
             <div className="content-area-body">
               <div className="content-description">
                 <p className="muted">

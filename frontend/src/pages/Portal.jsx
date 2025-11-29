@@ -55,23 +55,22 @@ export default function Portal() {
           <div className="options-container">
             <div className="option-card" onClick={()=>window.history.back()}>
               <div className="option-card-header">
-                <div className="option-card-icon"></div>
+                <div className="option-card-icon"><i className="fa-solid fa-arrow-left-long"></i></div>
                 <h3 className="option-card-title">Back</h3>
               </div>
               <p className="option-card-description">Return to previous step</p>
             </div>
             <div className="option-card selected">
               <div className="option-card-header">
-                <div className="option-card-icon"></div>
+                <div className="option-card-icon"><i className="fa-solid fa-address-card"></i></div>
                 <h3 className="option-card-title">Step 3 — Business Card</h3>
               </div>
               <p className="option-card-description">Generate your 8th Wall URL & QR code</p>
             </div>
           </div>
-
           <div className="content-area">
             <div className="content-area-header">
-              <div className="icon-circle"></div>
+              <div className="icon-circle"><i className="fa-solid fa-address-card"></i></div>
               <h2 className="content-area-title">AI Business Card Portal</h2>
             </div>
 
