@@ -506,6 +506,13 @@ VITE_API_URL="http://localhost:5174/api"
 VITE_API_URL="https://your-service-name.onrender.com/api"
 ```
 
+**Adding target images to the website**
+1. Add the images to /frontend/public/target-images
+2. Update the code to add the images to frontend/src/pages/TargetImages.jsx
+
+**Changing the 8th wall workspace connected to the website**
+Change the link for the 8th wall workspace in frontend\src\config.js
+
 ---
 
 ## Contributing

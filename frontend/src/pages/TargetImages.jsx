@@ -8,7 +8,10 @@ export default function TargetImages() {
   // Hard-coded list of target images - modify this array to add/remove images
   const TARGET_IMAGES = [
     { id: 1, imageUrl: "/target-images/tanami-target-image.jpg" },
-    { id: 2, imageUrl: "/target-images/target-QR-code.png" }
+    { id: 2, imageUrl: "/target-images/target-QR-code.png" },
+    { id: 3, imageUrl: "/target-images/PWC WebAR target image blue.png" },
+    { id: 4, imageUrl: "/target-images/PWC WebAR target image red.png" },
+    { id: 5, imageUrl: "/target-images/PWC WebAR target image black.png" }
   ];
 
   function downloadImage(imageUrl, imageId) {
