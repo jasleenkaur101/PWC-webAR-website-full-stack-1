@@ -224,7 +224,6 @@ git add .
 git commit -m "Ready for deployment"
 git push origin main
 ```
-
 ### Step 3: Create Web Service on Render
 
 1. Still on [render.com](https://render.com)
